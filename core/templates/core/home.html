@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winner Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: auto;
+        }
+        
+        label {
+            margin-bottom: 5px;
+        }
+        
+        input, select {
+            margin-bottom: 15px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        input[type="submit"] {
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: grey;
+        }
+        
+        /* Optional: Add styles for responsiveness */
+        @media (max-width: 600px) {
+            form {
+                max-width: 100%;
+            }
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        section {
+            margin: 20px 0;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: auto;
+        }
+        label, input, select, submit {
+            margin-bottom: 10px;
+        }
+        .product {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <header>
+            <h1>Winner Products</h1>
+        </header>
+            
+        <section>
+            <form method='GET'>
+                <label for="min_price">Min Price:</label>
+                <input type="text" id="min_price" name="min_price" placeholder="Enter product min price">
+
+                <label for="max_price">Max Price:</label>
+                <input type="text" id="max_price" name="max_price" placeholder="Enter product max price">
+
+                <label for="orderby">Order By:</label>
+                <select name="orderby" id="orderby">
+                    <option value="popularity" selected="selected">Sort by popularity</option>
+                    <option value="price-desc">Sort by price: high to low</option>
+                </select>
+
+                <input type="submit" value="Chercher">
+            </form>
+
+            {% if product %}
+                {% for item in product %}
+                    <div class="product">
+                        <h2>{{ item.title }}</h2>
+                        <p>Category: {{ item.category }}</p>
+                        <p>Price: Old/New: {{ item.price }}</p>
+                        <img src="{{ item.image_url }}" alt="{{ item.title }}">
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </section>
+
+        <footer>
+            <p>&copy; 2023 My Website. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
